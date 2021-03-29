@@ -11,6 +11,8 @@ import com.cos.myjpa.domain.song.CategoryType;
 import com.cos.myjpa.domain.song.Lyrics;
 import com.cos.myjpa.domain.song.Song;
 import com.cos.myjpa.domain.song.SongRepository;
+import com.cos.myjpa.domain.storage.Storage;
+import com.cos.myjpa.domain.storage.StorageRepo;
 
 @SpringBootApplication
 public class MusictestApplication {
@@ -22,7 +24,7 @@ public class MusictestApplication {
 	
 	
 	@Bean
-	public CommandLineRunner dataInit(SongRepository songRepository) {
+	public CommandLineRunner dataInit(SongRepository songRepository, StorageRepo storageRepo) {
 		
 //		String lyrics1 = "눈을 감으면 태양의 저 편에서 들려오는 멜로디\n"
 //				+ "내게 속삭이지 이제 그만 일어나 어른이 될 시간이야\n"
@@ -471,21 +473,25 @@ public class MusictestApplication {
 			songRepository.saveAll(Arrays.asList(
 					// 샘플 new Song(null, "TITLE", "ARTIST", CategoryType.BALLADE, 10000, ballade_lyrics2, "DATA", "IMG", "MP3")
 					// 샘플 new Song(null, "해에게서 소년에게", "N.E.X.T", CategoryType.ROCK, 10000, lyrics1, "1997. 11", "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2451334B573419A20E", "N.E.X.T - 해에게서 소년에게.mp3")
-					new Song(null, "나랑 아니면", "검정치마", CategoryType.BALLADE, 10000, ballade_lyrics1, "2017.05", "https://image.bugsm.co.kr/album/images/original/201002/20100228.jpg?version=undefined", "검정치마 - 나랑 아니면.mp3")
-					new Song(null, "정류장", "버스커 버스커", CategoryType.BALLADE, 10000, ballade_lyrics2, "2011.10", "https://image.bugsm.co.kr/album/images/original/3097/309722.jpg?version=undefined", "버스커버스커 - 정류장.mp3")
-					new Song(null, "비켜줄께", "브라운아이드소울", CategoryType.BALLADE, 10000, ballade_lyrics3, "2010.03", "https://image.bugsm.co.kr/album/images/original/2473/247312.jpg?version=undefined", "브라운아이드소울 - 비켜줄께.mp3")
-					new Song(null, "그사람", "이승철", CategoryType.BALLADE, 10000, ballade_lyrics4, "2010.07", "https://image.bugsm.co.kr/album/images/original/2300/230073.jpg?version=undefined", "이승철 - 그사람.mp3")
-					new Song(null, "잊었니", "이승철", CategoryType.BALLADE, 10000, ballade_lyrics5, "2012.02", "https://image.bugsm.co.kr/album/images/original/200337/20033774.jpg?version=undefined", "이승철 - 잊었니.mp3")
-					new Song(null, "그땐 미쳐 알지 못했지", "이적", CategoryType.BALLADE, 10000, ballade_lyrics6, "2003.05", "https://image.bugsm.co.kr/album/images/original/311/31121.jpg?version=undefined", "이적 - 그땐 미처 알지 못했지.mp3")
-					new Song(null, "Hello", "허각", CategoryType.BALLADE, 10000, ballade_lyrics7, "2011.09", "https://image.bugsm.co.kr/album/images/original/2994/299496.jpg?version=undefined", "허각 - Hello.mp3")
-					new Song(null, "너도", "로꼬", CategoryType.HIPHOP, 10000, hiphop_lyrics1, "2016.04", "https://image.bugsm.co.kr/album/images/original/200292/20029218.jpg?version=undefined", "로꼬 - 너도.mp3")
-					new Song(null, "행복", "오반", CategoryType.HIPHOP, 10000, hiphop_lyrics2, "2018.12", "https://image.bugsm.co.kr/album/images/original/8275/827514.jpg?version=undefined", "오반 - 행복.mp3")
+					new Song(null, "나랑 아니면", "검정치마", CategoryType.BALLADE, 10000, ballade_lyrics1, "2017.05", "https://image.bugsm.co.kr/album/images/original/201002/20100228.jpg?version=undefined", "검정치마 - 나랑 아니면.mp3"),
+					new Song(null, "정류장", "버스커 버스커", CategoryType.BALLADE, 10000, ballade_lyrics2, "2011.10", "https://image.bugsm.co.kr/album/images/original/3097/309722.jpg?version=undefined", "버스커버스커 - 정류장.mp3"),
+					new Song(null, "비켜줄께", "브라운아이드소울", CategoryType.BALLADE, 10000, ballade_lyrics3, "2010.03", "https://image.bugsm.co.kr/album/images/original/2473/247312.jpg?version=undefined", "브라운아이드소울 - 비켜줄께.mp3"),
+					new Song(null, "그사람", "이승철", CategoryType.BALLADE, 10000, ballade_lyrics4, "2010.07", "https://image.bugsm.co.kr/album/images/original/2300/230073.jpg?version=undefined", "이승철 - 그사람.mp3"),
+					new Song(null, "잊었니", "이승철", CategoryType.BALLADE, 10000, ballade_lyrics5, "2012.02", "https://image.bugsm.co.kr/album/images/original/200337/20033774.jpg?version=undefined", "이승철 - 잊었니.mp3"),
+					new Song(null, "그땐 미쳐 알지 못했지", "이적", CategoryType.BALLADE, 10000, ballade_lyrics6, "2003.05", "https://image.bugsm.co.kr/album/images/original/311/31121.jpg?version=undefined", "이적 - 그땐 미처 알지 못했지.mp3"),
+					new Song(null, "Hello", "허각", CategoryType.BALLADE, 10000, ballade_lyrics7, "2011.09", "https://image.bugsm.co.kr/album/images/original/2994/299496.jpg?version=undefined", "허각 - Hello.mp3"),
+					new Song(null, "너도", "로꼬", CategoryType.HIPHOP, 10000, hiphop_lyrics1, "2016.04", "https://image.bugsm.co.kr/album/images/original/200292/20029218.jpg?version=undefined", "로꼬 - 너도.mp3"),
+					new Song(null, "행복", "오반", CategoryType.HIPHOP, 10000, hiphop_lyrics2, "2018.12", "https://image.bugsm.co.kr/album/images/original/8275/827514.jpg?version=undefined", "오반 - 행복.mp3"),
 					new Song(null, "Boat", "죠지", CategoryType.HIPHOP, 10000, ballade_lyrics3, "2017.11", "https://image.bugsm.co.kr/album/images/original/201303/20130350.jpg?version=undefined", "죠지 - Boat.mp3")
 					
 //					new Person("홍길동", "프로그래머", "0102222"),
-
 					)
 			);
+		storageRepo.saveAll(Arrays.asList(
+					new Storage(null, "테스트 리스트1", null, null),
+					new Storage(null, "테스트 리스트2", null, null),
+					new Storage(null, "테스트 리스트3", null, null)
+					));
 		};
 	}
 }
