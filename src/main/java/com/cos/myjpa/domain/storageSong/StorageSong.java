@@ -32,11 +32,11 @@ public class StorageSong {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //Table, auto_increment, Sequence 
 	private Integer id;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "storageId")
 	private Storage storage;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne
 	@JoinColumn(name = "songId")
 	private Song song;
 	
