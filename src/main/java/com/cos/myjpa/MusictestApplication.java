@@ -488,8 +488,8 @@ public class MusictestApplication {
 					)
 			);
 		storageRepo.saveAll(Arrays.asList(
-					new Storage(null, "테스트 리스트1", null, null),
-					new Storage(null, "테스트 리스트2", null, null),
+					new Storage(null, "테스트 리스트1", null, null ),
+					new Storage(null, "테스트 리스트2", null, null ),
 					new Storage(null, "테스트 리스트3", null, null)
 					));
 		};

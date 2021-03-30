@@ -1,18 +1,18 @@
-package com.cos.myjpa.domain.storageList;
+package com.cos.myjpa.domain.storageSong;
 
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 
-import com.cos.myjpa.domain.song.CategoryType;
 import com.cos.myjpa.domain.song.Song;
 import com.cos.myjpa.domain.storage.Storage;
 
@@ -26,19 +26,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-public class StorageList {
+public class StorageSong {
 	
 	@Id //Pk
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //Table, auto_increment, Sequence 
 	private Integer id;
 	
-	@OneToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "storageId")
 	private Storage storage;
 	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "songId")
+	private Song song;
+	
 	@CreationTimestamp
 	private Timestamp createDate;
-	// 곡 카운트??
-	// private User user;
 
 }
