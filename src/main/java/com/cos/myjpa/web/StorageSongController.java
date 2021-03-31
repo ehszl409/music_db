@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cos.myjpa.domain.storageSong.StorageSong;
 import com.cos.myjpa.service.StorageSongService;
 import com.cos.myjpa.web.dto.CommonRespDto;
-import com.cos.myjpa.web.dto.storageSong.StorageSongRespDto;
 import com.cos.myjpa.web.dto.storageSong.StorageSongSaveReqDto;
 
 import lombok.RequiredArgsConstructor;
@@ -27,9 +26,9 @@ public class StorageSongController {
 		storageSongService.노래담기(saveReqDto.toEntity());
 	}
 	
-	@GetMapping("/storageSong/{storageId}")
-	public CommonRespDto<?> findAll(@PathVariable Integer storageId){
-		List<StorageSongRespDto> storageSongEntity = storageSongService.노래찾기(storageId);
+	@GetMapping("/storageSong/{id}")
+	public CommonRespDto<?> findAll(@PathVariable int id){
+		List<StorageSong> storageSongEntity = storageSongService.노래찾기(id);
 		return new CommonRespDto<>(1, "성공", storageSongEntity);
 	}
 }

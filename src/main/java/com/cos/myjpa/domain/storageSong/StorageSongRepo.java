@@ -7,7 +7,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.cos.myjpa.domain.song.Song;
-import com.cos.myjpa.web.dto.storageSong.StorageSongRespDto;
 
 public interface StorageSongRepo extends JpaRepository<StorageSong, Integer> {
+	
+	//"select * from storagesong st inner join song s on st.songId = s.id where st.storageId = ? "
+	@Query(value = "select * from storagesong st inner join song s on st.songId = s.id where st.storageId = :id",
+			nativeQuery = true)
+	List<StorageSong> findAllSong(int id);
 }
+
