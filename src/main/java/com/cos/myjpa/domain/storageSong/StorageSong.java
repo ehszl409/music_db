@@ -1,6 +1,7 @@
 package com.cos.myjpa.domain.storageSong;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,9 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.cos.myjpa.domain.song.Song;
 import com.cos.myjpa.domain.storage.Storage;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,7 +43,4 @@ public class StorageSong {
 	@JoinColumn(name = "songId")
 	private Song song;
 	
-	@CreationTimestamp
-	private Timestamp createDate;
-
 }

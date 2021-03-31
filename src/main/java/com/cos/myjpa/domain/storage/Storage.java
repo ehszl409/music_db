@@ -1,6 +1,7 @@
 package com.cos.myjpa.domain.storage;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,10 +14,13 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.cos.myjpa.domain.song.CategoryType;
 import com.cos.myjpa.domain.song.Song;
 import com.cos.myjpa.domain.storageSong.StorageSong;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,11 +40,11 @@ public class Storage {
 	
 	private String title;
 	
-	@OneToMany(mappedBy = "storage", fetch = FetchType.LAZY)
-	private List<StorageSong> storageSongs;
+//	@OneToMany(mappedBy = "storage", fetch = FetchType.LAZY)
+//	@JsonIgnoreProperties(value = "storage")
+//	private List<StorageSong> storageSongs;
 	
-	@CreationTimestamp
-	private Timestamp createDate;
+	
 	
 	// 곡 카운트??
 	// private User user;
